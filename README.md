@@ -4,6 +4,8 @@ This is the backend API for our demo microblog (knockoff twitter) application.
 
 It is written in Python using the [Django](https://www.djangoproject.com/) framework.
 
+Change this file.
+
 ---
 
 ## How to run it
