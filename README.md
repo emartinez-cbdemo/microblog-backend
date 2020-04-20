@@ -3,7 +3,7 @@
 This is the backend API for our demo microblog (knockoff twitter) application.
 
 It is written in Python using the [Django](https://www.djangoproject.com/) framework.
-check the webhooks that Jenkins mentions as having no credentials: April 20 12:16
+
 ---
 
 ## How to run it
