@@ -1,0 +1,39 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "microblog-backend"
+  labels:
+    app: "microblog-backend"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: "microblog-backend"
+  template:
+    metadata:
+      labels:
+        app: "microblog-backend"
+    spec:
+      containers:
+        - name: "microblog-backend"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: db
+            - name: DB_HOST
+              value: postgres
+            - name: DB_PORT
+              value: "5432"

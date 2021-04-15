@@ -1,0 +1,17 @@
+replicaCount: 1
+
+hostname: microblog-backend.example.com
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: latest
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+database:
+  username: admin
+  password: mysecurepassword
+  name: database

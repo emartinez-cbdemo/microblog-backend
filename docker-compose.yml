@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_PASSWORD: supersecurepassword
+      POSTGRES_USER: postgres
+      POSTGRES_DB: api
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  api:
+    build: .
+    command: gunicorn config.wsgi -b 0.0.0.0:8000
+    environment:
+      DB_NAME: api
+      DB_USER: postgres
+      DB_PASS: supersecurepassword
+      DB_HOST: db
+      DB_PORT: 5432
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
